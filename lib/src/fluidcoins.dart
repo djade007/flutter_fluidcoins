@@ -21,6 +21,7 @@ class FluidCoins {
     String name: '',
     String phone: '',
     Map<String, dynamic> metadata: const {},
+    Widget? errorWidget,
   }) async {
     return await Navigator.push(
       context,
@@ -32,6 +33,7 @@ class FluidCoins {
           name: name,
           phone: phone,
           metadata: metadata,
+          errorWidget: errorWidget,
         ),
       ),
     );
