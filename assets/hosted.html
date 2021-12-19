@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluidcoins</title>
+  <script src="https://js.fluidcoins.com/pay.js"></script>
+</head>
+<body>
+<script>
+  window.setUpFC = (config) => {
+    const data = JSON.parse(config);
+
+    const onClose = () => {
+      FlutterOnClose.postMessage("");
+    };
+    const onSuccess = (args) => {
+      FlutterOnSuccess.postMessage(JSON.stringify(args));
+    };
+    const onError = (args) => {
+      FlutterOnError.postMessage(JSON.stringify(args));
+    };
+
+    const fc = new Fluidcoins({
+      amount: data.amount,
+      metadata: data.metadata,
+      email: data.email,
+      key: data.key,
+      name: data.name,
+      phoneNumber: data.phoneNumber,
+      reference: data.reference,
+      onClose,
+      onSuccess,
+      onError,
+    });
+    fc.setup();
+    fc.open();
+  };
+</script>
+</body>
+</html>
+

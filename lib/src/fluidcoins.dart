@@ -20,6 +20,7 @@ class FluidCoins {
     required int amount,
     String name: '',
     String phone: '',
+    String reference: '',
     Map<String, dynamic> metadata: const {},
     Widget? errorWidget,
   }) async {
@@ -34,6 +35,7 @@ class FluidCoins {
           phone: phone,
           metadata: metadata,
           errorWidget: errorWidget,
+          reference: reference,
         ),
       ),
     );

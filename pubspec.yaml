@@ -1,6 +1,6 @@
 name: fluidcoins
 description: Accept 10+ cryptocurrencies from customers anywhere in the world using FluidCoins.
-version: 0.1.1
+version: 0.2.0
 homepage: https://github.com/djade007/flutter_fluidcoins
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^2.0.12
+  webview_flutter: ^3.0.0
 
 
 dev_dependencies:
