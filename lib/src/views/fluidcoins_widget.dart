@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:fluidcoins/src/models/fluid_response.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +26,9 @@ class FluidCoinsWidget extends StatefulWidget {
   /// The customer's phone number [optional].
   final String phone;
 
+  /// Transaction reference [optional].
+  final String reference;
+
   /// Additional metadata [optional].
   final Map<String, dynamic> metadata;
 
@@ -40,6 +44,7 @@ class FluidCoinsWidget extends StatefulWidget {
     required this.phone,
     required this.metadata,
     this.errorWidget,
+    this.reference: '',
   }) : super(key: key);
 
   @override
@@ -50,6 +55,13 @@ class _FluidCoinsWidgetState extends State<FluidCoinsWidget> {
   late WebViewController _controller;
   bool _isLoading = true;
   bool _error = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +115,7 @@ class _FluidCoinsWidgetState extends State<FluidCoinsWidget> {
             'amount': widget.amount,
             'name': widget.name,
             'metadata': widget.metadata,
+            'reference': widget.reference,
           },
         );
         _controller.evaluateJavascript("setUpFC('$jsonOptions')");
